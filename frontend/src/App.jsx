@@ -5,6 +5,7 @@ import PoliticianSearch from './pages/PoliticianSearch';
 import PolicyCompare from './pages/PolicyCompare';
 import NewsSummary from './pages/NewsSummary';
 import Chatbot from './pages/Chatbot';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/policy" element={<PolicyCompare />} />
             <Route path="/news" element={<NewsSummary />} />
             <Route path="/chat" element={<Chatbot />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
       </div>

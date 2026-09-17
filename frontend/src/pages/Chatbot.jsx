@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
+import { API } from '../config';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 const GREETING = { role: 'assistant', content: '안녕하세요! 저는 정CHPT입니다.\n한국 정치에 관한 질문이 있으시면 무엇이든 물어보세요.', local: true };
 
 export default function Chatbot() {

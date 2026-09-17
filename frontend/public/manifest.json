@@ -1,9 +1,0 @@
-{
-  "name": "정CHPT",
-  "short_name": "정CHPT",
-  "description": "한국 정치 전문 AI",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#0a0a0a"
-}

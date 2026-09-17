@@ -30,11 +30,12 @@ politics-ai/
 ## 🚀 실행 방법
 
 ```bash
-# 1) 백엔드
+# 1) 백엔드 (기본 포트 4004)
 cd backend
 npm install
-# .env 에 ANTHROPIC_API_KEY 설정
+cp .env.example .env   # .env 에 ANTHROPIC_API_KEY 설정
 npm start
+npm test               # 단위 테스트 (API 키 불필요)
 
 # 2) 프론트엔드
 cd ../frontend
@@ -42,10 +43,24 @@ npm install
 npm run dev
 ```
 
-## 🔑 환경변수 (backend/.env)
+## 🔑 환경변수
+
+**backend/.env** (`backend/.env.example` 복사)
 
 ```
+PORT=4004
 ANTHROPIC_API_KEY=your-claude-api-key
+# ALLOWED_ORIGINS=http://localhost:5174   # 미설정 시 5173/5174/4173 허용
 ```
+
+**frontend/.env** (`frontend/.env.example` 복사)
+
+```
+VITE_API_URL=http://localhost:4004
+```
+
+AI 설정 상태는 `GET /api/llm-status` 로 확인할 수 있습니다(외부 호출 없이 키 설정 여부만 확인).
+
+> `ANTHROPIC_API_KEY` 를 설정하기 전까지 AI 기능 4종(정치인 검색·정책 비교·뉴스 요약·챗봇)은 503 과 한국어 안내를 반환합니다. 나머지 화면·라우팅·입력 검증은 키 없이도 정상 동작합니다.
 
 > ⚠️ 정치는 민감한 주제입니다. 본 서비스의 답변은 참고용이며, 특정 정당·후보를 지지하지 않는 중립적 정보 제공을 지향합니다.

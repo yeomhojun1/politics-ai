@@ -388,3 +388,25 @@ textarea:focus {
     max-width: 88%;
   }
 }
+
+.notfound {
+  text-align: center;
+  padding: 48px 0;
+}
+
+.notfound-code {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.notfound-desc {
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.notfound-btn {
+  display: inline-block;
+  text-decoration: none;
+}

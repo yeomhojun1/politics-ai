@@ -1,6 +1,5 @@
 import { useState } from 'react';
-
-const API = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+import { API } from '../config';
 
 function Loading() {
   return <div className="loading"><div className="spinner" />AI가 분석 중입니다...</div>;
