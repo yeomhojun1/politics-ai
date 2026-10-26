@@ -1,5 +1,7 @@
 # 정CHPT — 한국 정치 질문 AI
 
+> 🔗 **Live Demo**: https://politics-ai-lake.vercel.app
+
 국회·선거·탄핵 같은 한국 정치 제도를 특정 정당이나 정치인 편을 들지 않고, 근거 법 조항과 함께 쉬운 말로 설명하는 웹 서비스입니다.
 
 **바로 써 보기: https://yeomhojun1.github.io/politics-ai/#/chat**
