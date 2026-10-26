@@ -1,8 +1,14 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  // 데모 빌드(VITE_DEMO=true)는 GitHub Pages 하위 경로(/politics-ai/)에 올라간다.
+  const DEMO = loadEnv(mode, process.cwd(), 'VITE_').VITE_DEMO === 'true';
+  const base = DEMO ? '/politics-ai/' : '/';
+
+  return {
+  base,
   plugins: [
     react(),
     VitePWA({
@@ -16,7 +22,8 @@ export default defineConfig({
         theme_color: '#0a0a0a',
         background_color: '#0a0a0a',
         display: 'standalone',
-        start_url: '/',
+        start_url: base,
+        scope: base,
         icons: [
           { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
           { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
@@ -26,4 +33,5 @@ export default defineConfig({
       }
     })
   ]
+  };
 });

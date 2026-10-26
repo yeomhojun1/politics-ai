@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import { API } from '../config';
+import { API, DEMO } from '../config';
+import { DEMO_QA } from '../demo/answers';
 
-const GREETING = { role: 'assistant', content: '안녕하세요! 저는 정CHPT입니다.\n한국 정치에 관한 질문이 있으시면 무엇이든 물어보세요.', local: true };
+const GREETING = { role: 'assistant', content: '안녕하세요! 저는 정CHPT입니다.\n한국 정치에 관한 질문이 있으시면 무엇이든 물어보세요.', local: true, demoExamples: DEMO };
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([GREETING]);
@@ -13,8 +14,8 @@ export default function Chatbot() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
 
-  const send = async () => {
-    const text = input.trim();
+  const send = async (preset) => {
+    const text = (typeof preset === 'string' ? preset : input).trim();
     if (!text || loading) return;
 
     const userMsg = { role: 'user', content: text };
@@ -35,7 +36,7 @@ export default function Chatbot() {
       });
       const data = await res.json();
       if (data.error) throw new Error(data.error);
-      setMessages(prev => [...prev, { role: 'assistant', content: data.result }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: data.result, demoExamples: Boolean(data.demoUnknown) }]);
     } catch (e) {
       setMessages(prev => [...prev, { role: 'assistant', content: `오류: ${e.message}` }]);
     } finally {
@@ -57,7 +58,18 @@ export default function Chatbot() {
         {messages.map((msg, i) => (
           <div key={i} className={`chat-msg ${msg.role === 'user' ? 'user' : 'ai'}`}>
             <span className="chat-label">{msg.role === 'user' ? '나' : '정CHPT'}</span>
-            <div className="chat-bubble">{msg.content}</div>
+            <div className="chat-bubble">
+              {msg.content}
+              {DEMO && msg.demoExamples && (
+                <div className="demo-examples">
+                  {DEMO_QA.map(qa => (
+                    <button key={qa.question} className="demo-chip" onClick={() => send(qa.question)} disabled={loading}>
+                      {qa.question}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         ))}
         {loading && (

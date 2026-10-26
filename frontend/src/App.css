@@ -366,6 +366,45 @@ textarea:focus {
   border-color: #555;
 }
 
+/* Demo mode (VITE_DEMO=true) */
+.demo-banner {
+  background: #2b2410;
+  color: #f3d27a;
+  border-bottom: 1px solid #5a4a1c;
+  font-size: 0.82rem;
+  text-align: center;
+  padding: 8px 16px;
+}
+
+.demo-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  white-space: normal;
+}
+
+.demo-chip {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.demo-chip:hover:not(:disabled) {
+  border-color: #555;
+}
+
+.demo-chip:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .feature-grid {
